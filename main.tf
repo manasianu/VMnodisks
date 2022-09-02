@@ -5,7 +5,7 @@ variable   "nsg"                {}
 variable   "vnet"               {}
 variable   "vmsize"             {}
 variable   "env"                {}
-variable   "key_data"           {}
+#variable   "key_data"           {}
 #variable  "storage_uri"        {}
 variable   "vm_count"           {}
 #variable   "managed_disk_name"  {}
