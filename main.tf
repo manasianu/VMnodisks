@@ -96,16 +96,16 @@ resource "azurerm_virtual_machine" "sap" {
        computer_name    = "${element(var.vmname, count.index)}"
        #computer_name   = "${var.vmname}"
        admin_username   = "azureadmin"
-       #admin_password   = "Password123"
+       admin_password   = "Avengers#12345"
     }
 
-   os_profile_linux_config {
-       disable_password_authentication = true
-       ssh_keys {
-             path       = "/home/azureadmin/.ssh/authorized_keys"
-             key_data   = var.key_data
-                }
-    }
+   #os_profile_linux_config {
+   #    disable_password_authentication = true
+   #    ssh_keys {
+   #          path       = "/home/azureadmin/.ssh/authorized_keys"
+   #          key_data   = var.key_data
+   #             }
+   # }
 
    # boot_diagnostics {
    #        enabled     = "true"
