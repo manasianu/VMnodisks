@@ -5,13 +5,13 @@ variable   "nsg"                {}
 variable   "vnet"               {}
 variable   "vmsize"             {}
 variable   "env"                {}
-#variable   "key_data"           {}
+variable   "key_data"           {}
 #variable  "storage_uri"        {}
 variable   "vm_count"           {}
 #variable   "managed_disk_name"  {}
 #variable   "managed_disk_sizes" {}
 #variable   "managed_disk_type"  {}
-variable   "lun"                {}
+#variable   "lun"                {}
 
 
 # Resource group
@@ -96,16 +96,16 @@ resource "azurerm_virtual_machine" "sap" {
        computer_name    = "${element(var.vmname, count.index)}"
        #computer_name   = "${var.vmname}"
        admin_username   = "azureadmin"
-       admin_password   = "Avengers#12345"
+       #admin_password   = "Avengers#12345"
     }
 
-   #os_profile_linux_config {
-   #    disable_password_authentication = true
-   #    ssh_keys {
-   #          path       = "/home/azureadmin/.ssh/authorized_keys"
-   #          key_data   = var.key_data
-   #             }
-   # }
+   os_profile_linux_config {
+       disable_password_authentication = true
+       ssh_keys {
+             path       = "/home/azureadmin/.ssh/authorized_keys"
+             key_data   = var.key_data
+                }
+    }
 
    # boot_diagnostics {
    #        enabled     = "true"
@@ -117,4 +117,8 @@ resource "azurerm_virtual_machine" "sap" {
    # }
 
 
+}
+
+output "ip" {
+  value = "${azurerm_public_ip.pubip.ip_address}"
 }
