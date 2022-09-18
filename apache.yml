@@ -1,0 +1,12 @@
+---
+- hosts: all
+  become: yes
+  tasks:
+     - name: update
+       shell: apt-get update
+     - name: install apache
+       apt: name=apache2 state=latest
+     - name: index file
+       copy: src=index.html dest=/var/www/html/index.html
+     - name: service
+       service: name=apache2 state=restarted
